@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 
 class PostNewCar extends Component{
   renderField(field){
@@ -28,46 +29,57 @@ class PostNewCar extends Component{
   render(){
     const { handleSubmit } = this.props;
     return(
-      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+      <div>
         <br/>
-        <Field
-          label="Year "
-          name="year"
-          component={this.renderField}
-        />
-        <br/>
-        <Field
-          label="Make "
-          name="make"
-          component={this.renderField}
-        />
-        <br/>
-        <Field
-          label="Model "
-          name="model"
-          component={this.renderField}
-        />
-        <br/>
-        <Field
-          label="Miles "
-          name="miles"
-          component={this.renderField}
-        />
-        <br/>
-        <Field
-          label="Price "
-          name="price"
-          component={this.renderField}
-        />
-        <br/>
-        <Field
-          label="Image Link "
-          name="photo_url"
-          component={this.renderField}
-        />
-        <br/>
-        <button type="submit">Add</button>
-      </form>
+        <Link to="/cars">
+          Back
+        </Link>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+          <br/>
+          <Field
+            label="Year "
+            name="year"
+            component={this.renderField}
+          />
+          <br/>
+          <Field
+            label="Make "
+            name="make"
+            component={this.renderField}
+          />
+          <br/>
+          <Field
+            label="Model "
+            name="model"
+            component={this.renderField}
+          />
+          <br/>
+          <Field
+            label="Miles "
+            name="miles"
+            component={this.renderField}
+          />
+          <br/>
+          <Field
+            label="Price "
+            name="price"
+            component={this.renderField}
+          />
+          <br/>
+          <Field
+            label="Image Link "
+            name="photo_url"
+            component={this.renderField}
+          />
+          <br/>
+          <button type="submit">Add</button>
+          <br/>
+          <br/>
+          <Link to="/cars">
+            <button>Cancel</button>
+          </Link>
+        </form>
+      </div>
     );
   }
 }
