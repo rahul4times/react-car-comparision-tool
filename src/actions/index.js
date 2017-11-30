@@ -16,8 +16,9 @@ export function fetchCars(){
 }
 
 // Purpose of this function is to post data on server
-export function createCar(values){
-  const request = axios.post(`${ROOT_URL}cars${KEY}`, values);
+export function createCar(values, callback){
+  const request = axios.post(`${ROOT_URL}cars${KEY}`, values)
+  .then(() => callback());
   return{
     type: CREATE_CAR,
     payload: request

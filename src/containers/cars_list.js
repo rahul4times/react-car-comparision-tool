@@ -3,18 +3,33 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCars } from '../actions';
 import { Link } from 'react-router-dom';
+import Img from 'react-image';
 
 class CarsList extends Component{
 
   renderCarsList(){
+    const imageSize = {
+      width: '150px',
+      height: '100px'
+    };
+
     return _.map(this.props.cars, car => {
       return (
         <tr key={car.id}>
+          <td><Img
+            style={imageSize}
+            src={ car.photo_url }
+          /></td>
           <td>{car.year}</td>
           <td>{car.make}</td>
           <td>{car.model}</td>
           <td>{car.miles}</td>
-          <td>{car.price}</td>
+          <td>${car.price}</td>
+          <td>
+            <button className="action-button">Compare</button>
+            <button className="action-button">Edit</button>
+            <button className="action-button">Remove</button>
+          </td>
         </tr>
       );
     });
@@ -38,11 +53,13 @@ class CarsList extends Component{
           <table>
             <thead>
               <tr>
+                <th>Image</th>
                 <th>Year</th>
                 <th>Make</th>
                 <th>Model</th>
                 <th>Miles</th>
                 <th>Price</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
