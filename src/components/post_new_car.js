@@ -13,12 +13,17 @@ class PostNewCar extends Component{
         />
 
         {/*--+--* Errors are coming from errors object *--+--*/}
-        {field.meta.errors}
+        {/*--+--* touched means that use touched it but moved away *--+--*/}
+        {/*--+--* wraping in div to show error in red color *--+--*/}
+        <div className="error-msg">
+          {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     );
   }
   onSubmit(values){
     console.log('values: ', values);
+
   }
   render(){
     const { handleSubmit } = this.props;
