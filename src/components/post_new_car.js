@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createCar } from '../actions';
 
 class PostNewCar extends Component{
   renderField(field){
@@ -24,6 +26,7 @@ class PostNewCar extends Component{
   }
   onSubmit(values){
     console.log('values: ', values);
+    this.props.createCar(values);
 
   }
   render(){
@@ -118,4 +121,6 @@ export default reduxForm({
   // because key validate and value validate was same so just validate is below
   validate,
   form: 'AddNewCar'
-})(PostNewCar);
+})(
+  connect(null, { createCar })(PostNewCar)
+);
