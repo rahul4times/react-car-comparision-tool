@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCars } from '../actions';
+import { Link } from 'react-router-dom';
 
 class CarsList extends Component{
 
@@ -24,23 +25,30 @@ class CarsList extends Component{
   }
 
   render(){
-    console.log('car list: ', this.props.cars);
     return(
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Year</th>
-              <th>Make</th>
-              <th>Model</th>
-              <th>Miles</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderCarsList()}
-          </tbody>
-        </table>
+      <div className="cars-table">
+        <div className="app-navigation">
+          <br/>
+          <Link to="/cars/add">
+            Add New Car
+          </Link>
+          <br/>
+          <br/>
+        </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Miles</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderCarsList()}
+            </tbody>
+          </table>
       </div>
     );
   }

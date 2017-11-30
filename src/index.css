@@ -9,3 +9,10 @@ table, thead, th, tbody, td{
   border-collapse: collapse;
   border: 1px solid #000;
 }
+.app-navigation{
+  text-align: center;
+}
+.form-style{
+  height: 30px;
+  font-size: 16px;
+}
