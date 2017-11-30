@@ -1,22 +1,23 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCars } from '../actions';
 
 class CarsList extends Component{
-  // renderCarsList(){
-  //   return this.props.cars.map((car) => {
-  //     return (
-  //       <tr key={car.id}>
-  //         <td>{car.year}</td>
-  //         <td>{car.make}</td>
-  //         <td>{car.model}</td>
-  //         <td>{car.miles}</td>
-  //         <td>{car.price}</td>
-  //       </tr>
-  //
-  //     );
-  //   });
-  // }
+
+  renderCarsList(){
+    return _.map(this.props.cars, car => {
+      return (
+        <tr key={car.id}>
+          <td>{car.year}</td>
+          <td>{car.make}</td>
+          <td>{car.model}</td>
+          <td>{car.miles}</td>
+          <td>{car.price}</td>
+        </tr>
+      );
+    });
+  }
 
   componentDidMount(){
     this.props.fetchCars();
@@ -36,7 +37,7 @@ class CarsList extends Component{
             </tr>
           </thead>
           <tbody>
-            
+            {this.renderCarsList()}
           </tbody>
         </table>
       </div>
@@ -44,12 +45,12 @@ class CarsList extends Component{
   }
 }
 
-// function mapStateToProps(state){
-//   return {
-//     cars : state.cars
-//   };
-// }
+function mapStateToProps(state){
+  return {
+    cars : state.cars
+  };
+}
 
 // connect takes a function parameter(mapStateToProps)
 // and a component (CarsList) and creates a container
-export default connect(null, { fetchCars })(CarsList);
+export default connect(mapStateToProps, { fetchCars })(CarsList);
