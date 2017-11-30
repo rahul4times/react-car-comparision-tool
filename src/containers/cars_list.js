@@ -9,7 +9,7 @@ class CarsList extends Component{
 
   renderCarsList(){
     const imageSize = {
-      width: '150px',
+      width: '90px',
       height: '100px'
     };
 
