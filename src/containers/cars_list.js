@@ -3,20 +3,25 @@ import { connect } from 'react-redux';
 import { fetchCars } from '../actions';
 
 class CarsList extends Component{
-  renderCarsList(){
-    return this.props.cars.map((car) => {
-      return (
-        <tr key={car.id}>
-          <td>{car.year}</td>
-          <td>{car.make}</td>
-          <td>{car.model}</td>
-          <td>{car.miles}</td>
-          <td>{car.price}</td>
-        </tr>
+  // renderCarsList(){
+  //   return this.props.cars.map((car) => {
+  //     return (
+  //       <tr key={car.id}>
+  //         <td>{car.year}</td>
+  //         <td>{car.make}</td>
+  //         <td>{car.model}</td>
+  //         <td>{car.miles}</td>
+  //         <td>{car.price}</td>
+  //       </tr>
+  //
+  //     );
+  //   });
+  // }
 
-      );
-    });
+  componentDidMount(){
+    this.props.fetchCars();
   }
+
   render(){
     return(
       <div>
@@ -31,7 +36,7 @@ class CarsList extends Component{
             </tr>
           </thead>
           <tbody>
-            {this.renderCarsList()}
+            
           </tbody>
         </table>
       </div>
@@ -47,4 +52,4 @@ class CarsList extends Component{
 
 // connect takes a function parameter(mapStateToProps)
 // and a component (CarsList) and creates a container
-export default connect(mapStateToProps)(CarsList);
+export default connect(null, { fetchCars })(CarsList);
