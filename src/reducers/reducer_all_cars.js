@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import {FETCH_CARS, FETCH_ONE_CAR} from '../actions';
 
-
-
 export default function (state={}, action){
   switch(action.type){
     case FETCH_ONE_CAR:

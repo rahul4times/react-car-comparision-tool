@@ -12,7 +12,7 @@ class CarsList extends Component{
       width: '90px',
       height: '100px'
     };
-
+    console.log('props on cars page: ', this.props.cars);
     return _.map(this.props.cars, car => {
       return (
         <tr key={car.id}>

@@ -13,7 +13,7 @@ export function fetchCars(){
   return{
     type: FETCH_CARS,
     payload: request
-  }
+  };
 }
 
 // Purpose of this function is to post data on server
@@ -28,6 +28,7 @@ export function createCar(values, callback){
 
 // Purpose of this function is to display just one car
 export function fetchOneCar(id){
+  console.log('id in action: ', id);
   const request = axios.get(`${ROOT_URL}cars/${id}${KEY}`);
   return{
     type: FETCH_ONE_CAR,
