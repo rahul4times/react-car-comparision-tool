@@ -4,11 +4,13 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import promise from 'redux-promise';
-
-import CarsList from './containers/cars_list';
 import reducers from './reducers';
+
+// Component goes here
+import CarsList from './containers/cars_list';
+import PostNewCar from './components/post_new_car';
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
@@ -16,7 +18,10 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router>
       <div>
-        <Route path="/" component={CarsList}/>
+        <Switch>
+          <Route path="/cars/add" component={PostNewCar}/>
+          <Route path="/" component={CarsList}/>
+        </Switch>
       </div>
     </Router>
   </Provider>

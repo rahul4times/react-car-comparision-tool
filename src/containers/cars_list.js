@@ -24,6 +24,7 @@ class CarsList extends Component{
   }
 
   render(){
+    console.log('car list: ', this.props.cars);
     return(
       <div>
         <table>
