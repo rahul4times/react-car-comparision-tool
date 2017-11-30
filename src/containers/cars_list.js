@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchCars } from '../actions';
 
 class CarsList extends Component{
   renderCarsList(){
@@ -38,11 +39,11 @@ class CarsList extends Component{
   }
 }
 
-function mapStateToProps(state){
-  return {
-    cars : state.cars
-  };
-}
+// function mapStateToProps(state){
+//   return {
+//     cars : state.cars
+//   };
+// }
 
 // connect takes a function parameter(mapStateToProps)
 // and a component (CarsList) and creates a container
