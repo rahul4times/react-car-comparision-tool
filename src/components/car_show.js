@@ -1,35 +1,35 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchOneCar } from '../actions';
-import _ from 'lodash';
+
 
 class CarShow extends Component {
 
   componentDidMount(){
-    console.log('comp did mount: ', this.props.match);
-    const { id } = this.props.match.params.id;
+    const { id } = this.props.match.params;
     this.props.fetchOneCar(id);
   }
 
 
   render(){
 
-    // car comes first as undefined then it gets that particular id of car
-    // if(!car){
-    //   <div>Loading...</div>
-    // }
+    const { car } = this.props;
+    //car comes first as undefined then it gets that particular id of car
+    if(!car){
+      <div>Loading...</div>
+    }
 
     return(
       <div>
-        hello
+        Year: {car.year}
       </div>
     );
   }
 }
 
-function mapStateToProps(state, ownProps){  
-  const id = parseInt(ownProps.match.params.id);
-  return { car: state.cars };
+function mapStateToProps({ cars }, ownProps){
+  console.log('cars on carshow page: ', cars);
+  return { car: cars[ownProps.match.params.id] };
 }
 
 export default connect(mapStateToProps, { fetchOneCar })(CarShow);
