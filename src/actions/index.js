@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const FETCH_CARS = 'fetchCars';
-export const FETCH_ONE_CAR = 'fetchOneCar';
-export const CREATE_CAR = 'createCar';
+export const FETCH_CARS = 'fetch_cars';
+export const FETCH_ONE = 'fetch_one';
+export const CREATE_CAR = 'create_car';
 
 const ROOT_URL = "https://g66backend.herokuapp.com/";
 const KEY = "?GOPOPJIGGLYJAM";
@@ -27,11 +27,10 @@ export function createCar(values, callback){
 }
 
 // Purpose of this function is to display just one car
-export function fetchOneCar(id){
-  console.log('id in action: ', id);
+export  function fetchOneCar(id){
   const request = axios.get(`${ROOT_URL}cars/${id}${KEY}`);
   return{
-    type: FETCH_ONE_CAR,
-    payload: request
+    type: FETCH_ONE,
+    payload:  request
   };
 }

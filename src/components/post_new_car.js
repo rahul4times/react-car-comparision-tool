@@ -25,7 +25,6 @@ class PostNewCar extends Component{
     );
   }
   onSubmit(values){
-    console.log('Props on new car page: ', this.props);
     this.props.createCar(values, () => {
       this.props.history.push('/cars');
     });

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { fetchOneCar } from '../actions';
+import { fetchOneCar } from '../actions/index';
 
 
 class CarShow extends Component {
@@ -13,23 +13,32 @@ class CarShow extends Component {
 
   render(){
 
-    const { car } = this.props;
+
     //car comes first as undefined then it gets that particular id of car
-    if(!car){
-      <div>Loading...</div>
+    if(!this.props.car){
+      return(<div>Loading...</div>)
     }
 
     return(
       <div>
-        Year: {car.year}
+
+        Year: {this.props.car.year}
+        <br/>
+        Make: {this.props.car.make}
+        <br/>
+        Model: {this.props.car.model}
+        <br/>
+        Miles: {this.props.car.miles}
+        <br/>
+        Price: {this.props.car.price}
       </div>
     );
   }
 }
 
 function mapStateToProps({ cars }, ownProps){
-  console.log('cars on carshow page: ', cars);
-  return { car: cars[ownProps.match.params.id] };
+  console.log('state on carshow: ', cars);
+  return { car: cars[ownProps.match.params.id]};
 }
 
 export default connect(mapStateToProps, { fetchOneCar })(CarShow);

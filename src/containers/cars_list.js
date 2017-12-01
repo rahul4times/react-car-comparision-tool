@@ -12,7 +12,6 @@ class CarsList extends Component{
       width: '90px',
       height: '100px'
     };
-    console.log('props on cars page: ', this.props.cars);
     return _.map(this.props.cars, car => {
       return (
         <tr key={car.id}>
@@ -40,7 +39,9 @@ class CarsList extends Component{
   }
 
   render(){
+
     return(
+
       <div className="cars-table">
         <div className="app-navigation">
           <br/>
@@ -72,6 +73,7 @@ class CarsList extends Component{
 }
 
 function mapStateToProps(state){
+  console.log('state on all car: ', state);
   return {
     cars : state.cars
   };
