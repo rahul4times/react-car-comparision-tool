@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { fetchOneCar } from '../actions/index';
-
+import { fetchOneCar, deleteCar } from '../actions';
+import { Link } from 'react-router-dom';
+import Img from 'react-image';
 
 class CarShow extends Component {
 
@@ -10,35 +11,60 @@ class CarShow extends Component {
     this.props.fetchOneCar(id);
   }
 
+  // this function is responsible for deleting car
+  onDeleteClick(){
+    const { id } = this.props.match.params;
+    this.props.deleteCar(id, () => {
+      this.props.history.push('/');
+    });
+  }
 
   render(){
-
 
     //car comes first as undefined then it gets that particular id of car
     if(!this.props.car){
       return(<div>Loading...</div>)
     }
 
+    const imageSize = {
+      width: '350px',
+      height: '300px'
+    };
+
     return(
       <div>
-
-        Year: {this.props.car.year}
         <br/>
-        Make: {this.props.car.make}
+        <Link to="/cars/">
+          back
+        </Link>
         <br/>
-        Model: {this.props.car.model}
         <br/>
-        Miles: {this.props.car.miles}
+        <button onClick={this.onDeleteClick.bind(this)}>
+          Delete
+        </button>
         <br/>
-        Price: {this.props.car.price}
+        <br/>
+        <Img
+          style={imageSize}
+          src={this.props.car.photo_url}
+        />
+        <br/>
+        <h2>
+          {`${this.props.car.year}
+          ${this.props.car.make}
+          ${this.props.car.model}`}
+        </h2>
+        <br/>
+        <strong>Miles:</strong> {this.props.car.miles}
+        <br/>
+        <strong>Price:</strong> ${this.props.car.price}
       </div>
     );
   }
 }
 
 function mapStateToProps({ cars }, ownProps){
-  console.log('state on carshow: ', cars);
   return { car: cars[ownProps.match.params.id]};
 }
 
-export default connect(mapStateToProps, { fetchOneCar })(CarShow);
+export default connect(mapStateToProps, { fetchOneCar, deleteCar })(CarShow);

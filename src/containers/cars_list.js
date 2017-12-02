@@ -20,8 +20,16 @@ class CarsList extends Component{
             src={ car.photo_url }
           /></td>
           <td>{car.year}</td>
-          <td>{car.make}</td>
-          <td>{car.model}</td>
+            <td>
+              <Link to={`/cars/${car.id}`}>
+                {car.make}
+              </Link>
+            </td>
+          <td>
+            <Link to={`/cars/${car.id}`}>
+              {car.model}
+            </Link>
+          </td>
           <td>{car.miles}</td>
           <td>${car.price}</td>
           <td>
@@ -73,7 +81,7 @@ class CarsList extends Component{
 }
 
 function mapStateToProps(state){
-  console.log('state on all car: ', state);
+  console.log('cars: ', state);
   return {
     cars : state.cars
   };
